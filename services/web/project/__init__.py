@@ -15,6 +15,10 @@ app.config.from_object("project.config.Config")
 db = SQLAlchemy(app)
 
 
+from project.api import api as api_blueprint
+app.register_blueprint(api_blueprint)
+
+
 class User(db.Model):
     __tablename__ = "users"
 
@@ -28,7 +32,7 @@ class User(db.Model):
 
 @app.route("/")
 def hello_world():
-    return jsonify(hello="world")
+    return jsonify(hello="world!")
 
 
 @app.route("/static/<path:filename>")
